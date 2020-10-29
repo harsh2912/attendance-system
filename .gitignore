@@ -1,0 +1,11 @@
+extras/
+models/insightface/*
+models/retinaface/*
+models/retinaface-R50.zip
+model-r*
+gender-age/
+Videos/
+app2.py
+s.jpg
+full_video_face_det*
+output.avi
