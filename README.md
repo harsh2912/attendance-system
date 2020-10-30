@@ -1,46 +1,32 @@
-# Mask Detection
+# Attendance System Using Face Recognition
 
-<img src="1_huh2tZKYK3TwAulj_kUUqg.jpeg" width="300"/> 
+<img src="friends.gif" width="500"/> 
 
 ## Details about this repo
 
-Please read my article [here](https://medium.com/@harshshrm94/mask-detection-using-deep-learning-2958503d42b1), which has an explanation about how to detect mask given a video feed
+Please read my article [here](https://medium.com/p/f49cd9bec02c/edit), which has an explanation about how an attendance system using Face Recognition, given a video feed works and read this article [here] to know how to implement it using this repository.
 
 ## How To Use
 * Clone this repo.
-* Download models from [here](https://drive.google.com/drive/folders/1G6-UJuLdDPybbk-4Z3829kQNzN8bhbIj?usp=sharing)
-* Make a directory "models/retinaface" inside Face_detection folder and extract **"retinaface-R50.zip"** in that folder and maake a directory "model" inside Mask_classification folder and put **"model_clean_data.pkl"** in that folder.
-* Change the location to /Mask-detection/Face_detection by running:
+* Download retinaface and insightface models from [here](https://drive.google.com/drive/folders/1G6-UJuLdDPybbk-4Z3829kQNzN8bhbIj?usp=sharing)
+* Make a directory **"models"** inside **Face_detection** folder and extract **"retinaface-R50.zip"** in a folder inside **"models"** with name **"retinaface"** and extract **"insightface.zip"** in the **"models"** folder only. So now you will have two directories inside **models**, namely **insightface** and **retinaface**.
+* In the root folder there is a file **environment.yml** which we will use to create a conda environment byt executing :
 ```
-cd Mask-detection/Face_detection
+conda env create -n face_recog -f environment.yml
 ```
-* Create the conda environment using the following command :
+* Start the redis server in which we will store the vectors of registered faces by running :
 ```
-conda env create -n detection -f requirements.yml
+redis-server
 ```
-* Change the pwd to Mask_classification by running :
+* Activate the conda environment created in previous step by running :
 ```
-cd Mask-detection/Mask_classification
+conda activate face_recog
 ```
-
-* Create the conda environment using the following command :
+* Register all the different person using **register.py**. To know about how to structure the data for registering please go through my [implementation] article
 ```
-conda env create -n classification -f requirements.yml
+python register.py -p path/to/folder/ -db 0
 ```
-* Activate the Classification environment and run a server at port 3000 by running following commands
+* Run the following comman to infer on a video feed :
 ```
-conda activate classification
-cd Mask-detection/Mask_classification
-flask run - -port 3000
+python infer.py -in path/to/video -out to/save/path -db 0
 ```
-* Run the following in a separate terminal. Keep the server running.
-```
-conda activate detection
-cd loc/Mask-detection
-```
-* Then you can run the script in following way after activating the environment:
-```
-python infer.py --is_image True --in_path path/to/image --out_path path/to/save
-```
-
-You can also go through my blog [here](https://medium.com/@harshshrm94/mask-detection-using-deep-learning-part-ii-ab7a2cb6aaf1), where I have explained each step of implementation.
