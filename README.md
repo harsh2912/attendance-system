@@ -4,7 +4,7 @@
 
 ## Details about this repo
 
-Please read my article [here](https://medium.com/p/f49cd9bec02c/edit), which has an explanation about how an attendance system using Face Recognition, given a video feed works and read this article [here] to know how to implement it using this repository.
+Please read my article [here](https://medium.com/p/f49cd9bec02c/edit), which has an explanation about how an attendance system using Face Recognition, given a video feed works and read this article [here](https://medium.com/p/7e1858b66cd3/edit) to know how to implement it using this repository.
 
 ## How To Use
 * Clone this repo.
@@ -22,11 +22,11 @@ redis-server
 ```
 conda activate face_recog
 ```
-* Register all the different person using **register.py**. To know about how to structure the data for registering please go through my [implementation] article
+* Register all the different person using **register.py**. To know about how to structure the data for registering please go through my [implementation](https://medium.com/p/7e1858b66cd3/edit) article
 ```
 python register.py -p path/to/folder/ -db 0
 ```
-* Run the following comman to infer on a video feed :
+* Run the following command to infer on a video feed after registering all the people :
 ```
 python infer.py -in path/to/video -out to/save/path -db 0
 ```
